@@ -1,0 +1,10 @@
+package com.example.booksocialnetwork.Book;
+
+import org.springframework.data.jpa.domain.Specification;
+
+public class BookSpecification {
+
+    public static Specification<Book> withOwnerId(Integer ownerId){
+        return ((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("Owner").get("Id"),ownerId));
+    }
+}
