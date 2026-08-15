@@ -4,14 +4,14 @@ A robust RESTful API built with Spring Boot for a community-driven book sharing 
 ---
 
 ## Table of Contents
-- [Features & Use Cases](#features--use-cases)
+- [Features & Use Cases](#-features--usecases)
 - [Quick Start Guide](#--quick-start-guide)
 - [API Documentation with Swagger/OpenAPI](#api-documentation-with-swaggeropenapi)
 - [API Endpoints Documentation](#api-endpoints-documentation)
 - [Pagination Details](#pagination-details)
 
 
-## Features & Use Cases
+## Features & UseCases
 
 Our platform enables a seamless book sharing experience with comprehensive features organized around four core user journeys:
 
