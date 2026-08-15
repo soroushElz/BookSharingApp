@@ -1,5 +1,5 @@
 📚 Book Share Platform API
-A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback. The application implements JWT-based authentication, role-based security, and a complete book borrowing lifecycle.
+A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback and ratings. The API includes authentication with JWT, email-based activation and password recovery, book management, borrowing workflows, and feedback endpoints to support a collaborative sharing experience.
 
 🌟 Use Cases
 This application is designed to support the following user journeys:
@@ -104,3 +104,5 @@ Pass the following optional query parameters in your GET requests:
 ```http
 GET /books?page=1&size=5
 Authorization: Bearer <your_token>
+
+```
