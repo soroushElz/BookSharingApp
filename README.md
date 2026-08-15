@@ -1,4 +1,39 @@
-2. If your access token expires, use the `POST /auth/refreshtoken` endpoint with your `refreshToken` to get a new access token.
+📚 Book Share Platform API
+A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback. The application implements JWT-based authentication, role-based security, and a complete book borrowing lifecycle.
+
+🌟 Use Cases
+This application is designed to support the following user journeys:
+
+User Onboarding & Security:
+Users can register for an account and receive an activation email to verify their identity.
+Secure login using email and password to receive JWT access and refresh tokens.
+Password recovery flow for forgotten passwords via email verification tokens.
+Book Management:
+Authenticated users can add new books to the platform.
+Owners can update the status of their books (e.g., toggle "shareable" or "archived").
+Users can browse all available books, view specific book details, or filter books by ownership.
+Book Borrowing Workflow:
+Users can borrow available books from other users.
+Borrowers can initiate a return request for books they currently possess.
+Book owners can approve or reject return requests to complete the borrowing lifecycle.
+Users can track books they have borrowed, books they have shared, and books currently returned.
+Feedback & Reviews:
+Users can submit feedback/ratings for books they have interacted with.
+Users can view paginated feedback for specific books to help decide whether to borrow them.
+🚀 How to Use the APIs (Introduction)
+To interact with this API, you must first authenticate. The platform uses Bearer Token (JWT) authentication.
+
+Step 1: Register & Activate
+Send a POST request to /auth/register with your name, email, and password.
+An activation email will be sent. Click the link (or use the token) to call GET /auth/activate-account?token=YOUR_TOKEN.
+Step 2: Authenticate
+Send a POST request to /auth/authenticate with your credentials.
+The API will return a JSON object containing your accessToken and refreshToken.
+Step 3: Access Protected Endpoints
+For all subsequent requests to /books and /feedbacks, include the following header:
+Authorization: Bearer <YOUR_ACCESS_TOKEN>
+
+ If your access token expires, use the `POST /auth/refreshtoken` endpoint with your `refreshToken` to get a new access token.
 
 ---
 
