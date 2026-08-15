@@ -1,5 +1,5 @@
 📚 Book Sharing Backend API
-A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback and reviews.
+A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback.
 
 ---
 
@@ -125,6 +125,47 @@ export SPRING_DATASOURCE_PASSWORD=postgres
 mvn spring-boot:run
 ```
 
+---
+
+## 📚 API Documentation with Swagger/OpenAPI
+
+This API is fully documented using **OpenAPI 3.0** (formerly Swagger), providing an interactive interface to explore and test all endpoints.
+
+### Accessing the Documentation
+
+Once the application is running, access the interactive API documentation at:
+
+```
+http://localhost:8080/swagger-ui.html
+```
+
+Or view the raw OpenAPI JSON specification at:
+
+```
+http://localhost:8080/api-docs
+```
+
+### What You Can Do in Swagger UI
+
+- **Browse All Endpoints**: View all available API endpoints organized by controller
+- **Read Detailed Documentation**: See descriptions, parameters, request/response models for each endpoint
+- **Try It Out**: Execute API calls directly from the browser with a "Try it out" button
+- **Authorize**: Use the lock icon to input your JWT Bearer token for testing protected endpoints
+- **View Request/Response**: See example requests and responses in JSON format
+- **Check Status Codes**: Understand all possible HTTP response codes for each endpoint
+
+### Example Workflow in Swagger UI
+
+1. Navigate to the **Authentication** section (`/auth`)
+2. Click on the `POST /auth/register` endpoint to expand it
+3. Click "Try it out"
+4. Fill in the required fields (name, email, password)
+5. Click "Execute" to send the request
+6. View the response and copy the activation token
+7. Use that token on the `/auth/activate-account` endpoint
+8. Proceed to `/auth/authenticate` to get your JWT tokens
+9. Click the "Authorize" button (top right) and paste your access token
+10. Access protected endpoints like `/books` with your token automatically included
 
 ### Authentication Overview
 The Book Share Platform uses **Bearer Token (JWT)** authentication. All requests to protected endpoints require a valid access token in the `Authorization` header.
@@ -234,7 +275,7 @@ Handles user reviews and ratings for books. **(All endpoints require Bearer Auth
 | POST   | `/feedbacks`          | Submit feedback/rating for a book                     | `FeedbackRequest` (JSON Body)                        |
 | GET    | `/feedbacks/book/{book-id}` | Get all feedback for a specific book (Paginated) | `book-id` (Path Var), `?page=int`, `?size=int` (Query)|
 
-*(Note: The base path for the feedback controller is assumed to be `/feedbacks` based on standard Spring Boot conventions, as the class-level mapping was not explicitly provided in the snippet).* 
+*(For complete and interactive documentation, please visit the Swagger UI at `/swagger-ui.html` after starting the application.)*
 
 ---
 
@@ -250,6 +291,3 @@ Pass the following optional query parameters in your GET requests:
 GET /books?page=1&size=5
 Authorization: Bearer <your_token>
 ```
-
-
-
