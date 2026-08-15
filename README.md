@@ -1,17 +1,17 @@
 📚 Book Sharing Backend API
-A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave reviews.
+A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave r[...]
 
 ---
 
 ## Table of Contents
-- [Features & Use Cases](#features--usecases)
-- [Quick Start Guide](#--quick-start-guide)
+- [Features and Use Cases](#features-and-use-cases)
+- [Quick Start Guide](#quick-start-guide)
 - [API Documentation with Swagger/OpenAPI](#api-documentation-with-swaggeropenapi)
 - [API Endpoints Documentation](#api-endpoints-documentation)
-- [Pagination Details](#pagination-details)
+  - [Pagination Details](#pagination-details)
 
 
-## Features & UseCases
+## Features and Use Cases
 
 Our platform enables a seamless book sharing experience with comprehensive features organized around four core user journeys:
 
@@ -40,7 +40,7 @@ Our platform enables a seamless book sharing experience with comprehensive featu
 
 ---
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### 1) application.properties 
 Add the following to src/main/resources/application.properties or provide them as environment variables in your deployment:
@@ -135,7 +135,7 @@ mvn spring-boot:run
 
 ---
 
-## 📚 API Documentation with Swagger/OpenAPI
+## API Documentation with Swagger/OpenAPI
 
 This API is fully documented using **OpenAPI 3.0**, providing an interactive interface to explore and test all endpoints.
 
@@ -231,7 +231,7 @@ Content-Type: application/json
 
 ---
 
-## 📝 API Endpoints Documentation
+## API Endpoints Documentation
 
 ### 1. Authentication Controller (`/auth`)
 Handles user registration, login, account activation, and password management.
@@ -283,9 +283,7 @@ Handles user reviews and ratings for books. **(All endpoints require Bearer Auth
 | POST | `/feedbacks` | Submit feedback/rating for a book | `FeedbackRequest` (JSON Body) |
 | GET | `/feedbacks/book/{book-id}` | Get all feedback for a specific book (Paginated) | `book-id` (Path Var), `?page=int`, `?size=int` (Query) |
 
----
-
-## 💻 Pagination Details
+### Pagination Details
 
 Endpoints that return lists (like getting all books or feedback) utilize pagination. 
 Pass the following optional query parameters in your GET requests:
@@ -297,3 +295,4 @@ Pass the following optional query parameters in your GET requests:
 GET /books?page=1&size=5
 Authorization: Bearer <your_token>
 ```
+
