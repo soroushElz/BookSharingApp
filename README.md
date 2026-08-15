@@ -4,8 +4,8 @@ A robust RESTful API built with Spring Boot for a community-driven book sharing 
 ---
 
 ## Table of Contents
-- [Features & Use Cases](#features--use-cases)
-- [Quick Start Guide](#quick-start-guide)
+- [Features & Use Cases](#Features-&-Use-Cases)
+- [Quick Start Guide](#Quick-Start-Guide)
 - [API Documentation with Swagger/OpenAPI](#api-documentation-with-swaggeropenapi)
 - [API Endpoints Documentation](#api-endpoints-documentation)
 - [Pagination Details](#pagination-details)
