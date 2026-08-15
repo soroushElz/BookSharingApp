@@ -1,10 +1,10 @@
 📚 Book Sharing Backend API
-A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leav[...]
+A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave reviews.
 
 ---
 
 ## Table of Contents
-- [Features & Use Cases](#features-&-Use-cases)
+- [Features & Use Cases](#features--use-cases)
 - [Quick Start Guide](#quick-start-guide)
 - [API Documentation with Swagger/OpenAPI](#api-documentation-with-swaggeropenapi)
 - [API Endpoints Documentation](#api-endpoints-documentation)
@@ -137,7 +137,7 @@ mvn spring-boot:run
 
 ## 📚 API Documentation with Swagger/OpenAPI
 
-This API is fully documented using **OpenAPI 3.0** , providing an interactive interface to explore and test all endpoints.
+This API is fully documented using **OpenAPI 3.0**, providing an interactive interface to explore and test all endpoints.
 
 ### Accessing the Documentation
 
@@ -236,14 +236,14 @@ Content-Type: application/json
 ### 1. Authentication Controller (`/auth`)
 Handles user registration, login, account activation, and password management.
 
-| Method | Endpoint                  | Description                                              | Request Body / Params                     |
-|--------|---------------------------|---------------------------------------------------------|-------------------------------------------|
-| POST   | `/auth/register`          | Register a new user account                             | `RegistrationRequest` (JSON Body)         |
-| POST   | `/auth/authenticate`      | Login and retrieve JWT tokens                           | `AuthenticationRequest` (JSON Body)       |
-| GET    | `/auth/activate-account`  | Activate account using email token                      | `?token=String` (Query Param)             |
-| POST   | `/auth/refreshtoken`      | Get a new access token using a refresh token            | `TokenRefreshRequest` (JSON Body)         |
-| POST   | `/auth/forgetPassword`    | Request a password reset email                          | `?email=String` (Query Param)             |
-| POST   | `/auth/changePassword`    | Reset password using the token sent to email            | `?token=String` (Query), `ChangePasswordRequest` (JSON Body) |
+| Method | Endpoint | Description | Request Body / Params |
+|:-------|:---------|:------------|:----------------------|
+| POST | `/auth/register` | Register a new user account | `RegistrationRequest` (JSON Body) |
+| POST | `/auth/authenticate` | Login and retrieve JWT tokens | `AuthenticationRequest` (JSON Body) |
+| GET | `/auth/activate-account` | Activate account using email token | `?token=String` (Query Param) |
+| POST | `/auth/refreshtoken` | Get a new access token using a refresh token | `TokenRefreshRequest` (JSON Body) |
+| POST | `/auth/forgetPassword` | Request a password reset email | `?email=String` (Query Param) |
+| POST | `/auth/changePassword` | Reset password using the token sent to email | `?token=String` (Query), `ChangePasswordRequest` (JSON Body) |
 
 ---
 
@@ -251,38 +251,37 @@ Handles user registration, login, account activation, and password management.
 Manages books, sharing status, and the borrowing lifecycle. **(All endpoints require Bearer Authentication)**
 
 #### Book CRUD & Browsing
-| Method | Endpoint           | Description                                   | Request Body / Params                                |
-|--------|--------------------|-----------------------------------------------|------------------------------------------------------|
-| POST   | `/books`           | Add a new book to the platform                | `BookRequest` (JSON Body)                            |
-| GET    | `/books/{book-id}` | Find a specific book by its ID                | `book-id` (Path Variable)                            |
-| GET    | `/books`           | Get all books (Paginated)                     | `?page=int`, `?size=int` (Query Params)              |
-| GET    | `/books/owner`     | Get all books owned by the logged-in user     | `?page=int`, `?size=int` (Query Params)              |
+| Method | Endpoint | Description | Request Body / Params |
+|:-------|:---------|:------------|:----------------------|
+| POST | `/books` | Add a new book to the platform | `BookRequest` (JSON Body) |
+| GET | `/books/{book-id}` | Find a specific book by its ID | `book-id` (Path Variable) |
+| GET | `/books` | Get all books (Paginated) | `?page=int`, `?size=int` (Query Params) |
+| GET | `/books/owner` | Get all books owned by the logged-in user | `?page=int`, `?size=int` (Query Params) |
 
 #### Book Status Updates
-| Method | Endpoint                       | Description                                  | Request Body / Params                  |
-|--------|--------------------------------|----------------------------------------------|----------------------------------------|
-| PATCH  | `/books/shareable/{book_id}`   | Toggle the shareable status of a book        | `book_id` (Path Variable)              |
-| PATCH  | `/books/Archived/{book_id}`    | Toggle the archived status of a book         | `book_id` (Path Variable)              |
+| Method | Endpoint | Description | Request Body / Params |
+|:-------|:---------|:------------|:----------------------|
+| PATCH | `/books/shareable/{book_id}` | Toggle the shareable status of a book | `book_id` (Path Variable) |
+| PATCH | `/books/Archived/{book_id}` | Toggle the archived status of a book | `book_id` (Path Variable) |
 
 #### Borrowing Workflow
-| Method | Endpoint                               | Description                                              | Request Body / Params                  |
-|--------|----------------------------------------|---------------------------------------------------------|----------------------------------------|
-| POST   | `/books/borrow/{book_id}`             | Borrow a book from another user                         | `book_id` (Path Variable)              |
-| GET    | `/books/borrowed`                     | Get all books the current user has borrowed (Paginated) | `?page=int`, `?size=int` (Query Params)|
-| GET    | `/books/returned`                     | Get all books returned by users to the owner (Paginated)| `?page=int`, `?size=int` (Query Params)|
-| PATCH  | `/books/borrow/return/{book_id}`      | Borrower initiates a return for a borrowed book         | `book_id` (Path Variable)              |
-| PATCH  | `/books/borrow/return/approve/{book_id}`| Owner approves the return of a borrowed book          | `book_id` (Path Variable)              |
+| Method | Endpoint | Description | Request Body / Params |
+|:-------|:---------|:------------|:----------------------|
+| POST | `/books/borrow/{book_id}` | Borrow a book from another user | `book_id` (Path Variable) |
+| GET | `/books/borrowed` | Get all books the current user has borrowed (Paginated) | `?page=int`, `?size=int` (Query Params) |
+| GET | `/books/returned` | Get all books returned by users to the owner (Paginated) | `?page=int`, `?size=int` (Query Params) |
+| PATCH | `/books/borrow/return/{book_id}` | Borrower initiates a return for a borrowed book | `book_id` (Path Variable) |
+| PATCH | `/books/borrow/return/approve/{book_id}` | Owner approves the return of a borrowed book | `book_id` (Path Variable) |
 
 ---
 
 ### 3. Feedback Controller (`/feedbacks`)
 Handles user reviews and ratings for books. **(All endpoints require Bearer Authentication)**
 
-| Method | Endpoint              | Description                                            | Request Body / Params                                |
-|--------|-----------------------|-------------------------------------------------------|------------------------------------------------------|
-| POST   | `/feedbacks`          | Submit feedback/rating for a book                     | `FeedbackRequest` (JSON Body)                        |
-| GET    | `/feedbacks/book/{book-id}` | Get all feedback for a specific book (Paginated) | `book-id` (Path Var), `?page=int`, `?size=int` (Query)|
-
+| Method | Endpoint | Description | Request Body / Params |
+|:-------|:---------|:------------|:----------------------|
+| POST | `/feedbacks` | Submit feedback/rating for a book | `FeedbackRequest` (JSON Body) |
+| GET | `/feedbacks/book/{book-id}` | Get all feedback for a specific book (Paginated) | `book-id` (Path Var), `?page=int`, `?size=int` (Query) |
 
 ---
 
@@ -290,8 +289,8 @@ Handles user reviews and ratings for books. **(All endpoints require Bearer Auth
 
 Endpoints that return lists (like getting all books or feedback) utilize pagination. 
 Pass the following optional query parameters in your GET requests:
-*   `page`: The page number you want to retrieve (starts at `0`). Default is `0`.
-*   `size`: The number of items per page. Default is `10`.
+- `page`: The page number you want to retrieve (starts at `0`). Default is `0`.
+- `size`: The number of items per page. Default is `10`.
 
 **Example Request:**
 ```http
