@@ -1,5 +1,5 @@
 📚 Book Share Platform API
-A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback.
+A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback and reviews.
 
 ---
 
@@ -142,7 +142,7 @@ Handles user reviews and ratings for books. **(All endpoints require Bearer Auth
 | POST   | `/feedbacks`          | Submit feedback/rating for a book                     | `FeedbackRequest` (JSON Body)                        |
 | GET    | `/feedbacks/book/{book-id}` | Get all feedback for a specific book (Paginated) | `book-id` (Path Var), `?page=int`, `?size=int` (Query)|
 
-*(Note: The base path for the feedback controller is assumed to be `/feedbacks` based on standard Spring Boot conventions, as the class-level mapping was not explicitly provided in the snippet).*
+*(Note: The base path for the feedback controller is assumed to be `/feedbacks` based on standard Spring Boot conventions, as the class-level mapping was not explicitly provided in the snippet).* 
 
 ---
 
@@ -158,3 +158,109 @@ Pass the following optional query parameters in your GET requests:
 GET /books?page=1&size=5
 Authorization: Bearer <your_token>
 ```
+
+---
+
+## ⚙️ Application Configuration & Startup
+
+This section explains how to configure the application to use a PostgreSQL database and how to start the app with Maven.
+
+### 1) application.properties (example)
+Add the following to src/main/resources/application.properties or provide them as environment variables in your deployment:
+
+```properties
+# PostgreSQL datasource
+spring.datasource.url=jdbc:postgresql://localhost:5432/booksharingdb
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA / Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Server (optional)
+server.port=8080
+
+# JWT / mail / other settings
+# jwt.secret=your_jwt_secret
+# spring.mail.host=smtp.example.com
+```
+
+You can also set them via environment variables using the Spring Boot relaxed binding, for example:
+- SPRING_DATASOURCE_URL
+- SPRING_DATASOURCE_USERNAME
+- SPRING_DATASOURCE_PASSWORD
+- SPRING_JPA_HIBERNATE_DDL_AUTO
+
+### 2) Create the database (local)
+If you have psql available locally:
+
+```bash
+# login to postgres and create the DB
+psql -h localhost -U postgres -c "CREATE DATABASE booksharingdb;"
+```
+
+Or using Docker (see next section).
+
+### 3) Run PostgreSQL with Docker Compose (recommended for local development)
+Create a docker-compose.yml in the repo (or run the snippet below) and then run docker-compose up -d.
+
+```yaml
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: booksharingdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+Start DB:
+```bash
+docker-compose up -d
+```
+
+### 4) Start the application with Maven
+From the repository root:
+
+- Run directly with Maven (development):
+```bash
+mvn spring-boot:run
+```
+- Build and run the packaged JAR:
+```bash
+mvn clean package -DskipTests
+java -jar target/*.jar
+```
+- Run with a specific Spring profile (e.g., prod):
+```bash
+mvn spring-boot:run -Dspring-boot.run.profiles=prod
+```
+
+If you prefer environment variables (recommended for production), set the DB URL and credentials before running:
+
+```bash
+export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/booksharingdb
+export SPRING_DATASOURCE_USERNAME=postgres
+export SPRING_DATASOURCE_PASSWORD=postgres
+mvn spring-boot:run
+```
+
+### 5) Troubleshooting
+- If you get connection errors, ensure PostgreSQL is running and reachable on the configured host/port.
+- Check logs for SQL errors and ensure the DB user has permission to create tables (or set appropriate schema migration settings).
+- For local quick-start, the Docker Compose setup above is the simplest path: it provides a running Postgres instance matching the sample properties.
+
+---
+
+If you'd like, I can also add a docker-compose stack that launches both Postgres and the Spring Boot app together, or add an example environment file (.env) and a sample systemd service for running the JAR in production.
