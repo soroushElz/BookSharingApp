@@ -1,4 +1,4 @@
-📚 Book Share Platform API
+📚 Book Sharing Backend API
 A robust RESTful API built with Spring Boot for a community-driven book sharing platform. Users can securely register, manage their book collections, share books with others, borrow books, and leave feedback and reviews.
 
 ---
