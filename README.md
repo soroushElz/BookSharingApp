@@ -34,7 +34,7 @@ Our platform enables a seamless book sharing experience with comprehensive featu
 
 ## 🚀 Quick Start Guide
 
-### 1) application.properties (example)
+### 1) application.properties 
 Add the following to src/main/resources/application.properties or provide them as environment variables in your deployment:
 
 ```properties
