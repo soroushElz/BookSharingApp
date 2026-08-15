@@ -129,20 +129,20 @@ mvn spring-boot:run
 
 ## 📚 API Documentation with Swagger/OpenAPI
 
-This API is fully documented using **OpenAPI 3.0** (formerly Swagger), providing an interactive interface to explore and test all endpoints.
+This API is fully documented using **OpenAPI 3.0** , providing an interactive interface to explore and test all endpoints.
 
 ### Accessing the Documentation
 
 Once the application is running, access the interactive API documentation at:
 
 ```
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/api/v1/swagger-ui.html
 ```
 
 Or view the raw OpenAPI JSON specification at:
 
 ```
-http://localhost:8080/api-docs
+http://localhost:8080/api/v1/api-docs
 ```
 
 ### What You Can Do in Swagger UI
@@ -168,7 +168,7 @@ http://localhost:8080/api-docs
 10. Access protected endpoints like `/books` with your token automatically included
 
 ### Authentication Overview
-The Book Share Platform uses **Bearer Token (JWT)** authentication. All requests to protected endpoints require a valid access token in the `Authorization` header.
+The Book Sharing App uses **Bearer Token (JWT)** authentication. All requests to protected endpoints require a valid access token in the `Authorization` header.
 
 ### Step 1️⃣: Register & Activate Your Account
 ```bash
@@ -275,7 +275,6 @@ Handles user reviews and ratings for books. **(All endpoints require Bearer Auth
 | POST   | `/feedbacks`          | Submit feedback/rating for a book                     | `FeedbackRequest` (JSON Body)                        |
 | GET    | `/feedbacks/book/{book-id}` | Get all feedback for a specific book (Paginated) | `book-id` (Path Var), `?page=int`, `?size=int` (Query)|
 
-*(For complete and interactive documentation, please visit the Swagger UI at `/swagger-ui.html` after starting the application.)*
 
 ---
 
